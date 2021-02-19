@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang = "ru">
+    <head>
+        <meta charset = "utf-8">
+        <title>Свойства отношений</title>
+        <script type="text/javascript">
+            function define()
+            {
+                var matrix = [];
+                for (var i = 0; i < 4; i++)
+                {
+                    matrix[i] = [];
+                    for (var j = 0; j < 4; j++)
+                    {
+                        matrix[i][j] = document.getElementById("" + (i + 1) + (j + 1)).value;
+                    }
+                }
+                for (var i = 0; i < 4; i++)
+                {
+                    for (var j = 0; j < 4; j++)
+                    {
+                        if (matrix[i][j] == "")
+                        {
+                            document.getElementById("result").innerHTML = "Пропущено поле ввода!";
+                            return;
+                        }
+                        if (matrix[i][j] != 0 && matrix[i][j] != 1)
+                        {
+                            document.getElementById("result").innerHTML = "Неправильный формат данных!";
+                            return;
+                        }
+                    }
+                }
+                
+                flag = true;
+                for (var i = 0; i < 4; i++)
+                {                    
+                    if (matrix[i][i] == 0)
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag)
+                {
+                    document.getElementById("result").innerHTML = "Результаты расчёта:<br><br>Отношение рефлексивно<br>";
+                } else
+                {
+                    document.getElementById("result").innerHTML = "Результаты расчёта:<br><br>Отношение не рефлексивно<br>";
+                }
+                
+                flag = true;
+                for (var i = 0; i < 4; i++)
+                {                    
+                    for (var j = i + 1; j < 4; j++)
+                    {
+                        if (matrix[i][j] != matrix[j][i])
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+                if (flag)
+                {
+                    document.getElementById("result").innerHTML += "Отношение симметрично<br>";
+                } else
+                {
+                    document.getElementById("result").innerHTML += "Отношение не симметрично<br>";
+                }
+                
+                flag = true;
+                for (var i = 0; i < 4; i++)
+                {                    
+                    for (var j = i + 1; j < 4; j++)
+                    {
+                        if (matrix[i][j] == matrix[j][i])
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+                if (flag)
+                {
+                    document.getElementById("result").innerHTML += "Отношение кососимметрично<br>";
+                } else
+                {
+                    document.getElementById("result").innerHTML += "Отношение не кососимметрично<br>";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Свойства отношений</h1>
+        <form>            
+            <table border = "1">            
+            <caption>Матрица отношения</caption>
+            <caption align = "bottom">                
+                <br><input type = "button" onclick = "define()" value = "Определить">
+            </caption>
+            <tbody>                
+                <tr>
+                    <th width = "20%"></th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "11"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "12"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "13"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "14"></td>
+                </tr>
+                <tr>                    
+                    <th>2</th>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "21"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "22"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "23"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "24"></td>
+                </tr>
+                <tr>                   
+                    <th>3</th>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "31"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "32"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "33"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "34"></td>
+                </tr>
+                <tr>                   
+                    <th>4</th>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "41"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "42"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "43"></td>
+                    <td><input type = "number" min = "0" max = "1" size = "1" value = "0" id = "44"></td>
+                </tr>               
+            </tbody>                    
+        </table>
+        <br><br>        
+        <div id = "result"></div>
+        </form>               
+    </body>
+</html>
